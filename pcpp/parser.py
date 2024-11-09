@@ -191,7 +191,12 @@ _trigraph_rep = {
     '-':'~'
 }
 
+TRIGRAPHS='-trigraphs' in sys.argv
+
 def trigraph(input):
+    global TRIGRAPHS
+    if not TRIGRAPHS:
+        return input
     return _trigraph_pat.sub(lambda g: _trigraph_rep[g.group()[-1]],input)
 
 def default_lexer():
